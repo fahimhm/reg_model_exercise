@@ -33,13 +33,41 @@ After initial cleanup, next step was to check variation in categorical data. I u
 ### 2.2. Feature Selection and Engineering
 First step of feature engineering would be based on regression's assumptions. I would like to compare each assumption.
 
-#### 2.2.1. Numeric Value Only
+#### 2.2.1. Numeric Values Only
 Regression model assume that all features are numeric, more specific conitnuous numeric. For baseline purpose, all numeric value were selected, without scaling process.
 
 > ['MSSubClass', 'LotFrontage', 'LotArea', 'OverallQual', 'OverallCond', 'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF1', 'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea','BsmtFullBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 'TotRmsAbvGrd', 'Fireplaces', 'GarageYrBlt', 'GarageCars', 'GarageArea', 'WoodDeckSF', 'OpenPorchSF', 'MoSold', 'YrSold']
+
+#### 2.2.2. Numeric Values Only with StandardScaler
+The next step is standardization scaling using standardscaler. It was not only to improve score but also to make easier model interpretation.
 
 ## 3. Training of Regression Model
 Using the dataset with features selection in previous section, various models were trained and compared.  The description and results from these models are shown below.
 
 ### 3.1. Training Result for Section 2.2.1. Numeric Values Only
 The regression model performs prediction by combining all numeric value without scaling/standardisation. This model would be a baseline for next feature engineering model.
+Intercept:
+> 411780.8240664884
+
+Coefficient:
+> [-2.09665894e+02, -7.70098616e+01,  4.34117749e-01,  1.80732818e+04, 5.12955066e+03,  2.43820188e+02,  1.19090279e+02,  3.20337074e+01, 9.90873289e+00,  1.43098504e+00, -8.23605447e-01,  1.05161125e+01, 2.12458809e+01,  2.37681600e+01,  2.68109637e+01,  8.57148052e+03, 1.97965513e+03, -1.55984055e+03, -9.63530530e+03,  4.02416519e+03, 5.63014201e+03,  1.73565734e+02,  1.27677216e+04, -4.81269106e+00, 2.06707347e+01, -1.84572283e+00, -4.71000321e+01, -7.66864445e+02]
+
+### 3.2. Training Result for Section 2.2.2. Numeric Values Only with StandardScaler
+When all features in the same scale, it's easier to interpret. From these coefficient we could take short conclusion that OverallQual have the most positive impact when MSSubClass have the most negative impact. They means higher OverallQuall will increase SalePrice, but higher MSSubClass will decrease SalePrice. Perhaps it doesn't make sense for higher class will get cheaper sales, or it should remind me that MSSubClass even in numeric, it is still categorical and should get another handling.
+Intercept:
+> 180921.19589041095
+
+Coefficient:
+> [-8865.9491972 , -1695.76732218,  4331.56009023, 24986.72482286, 5706.20539294,  7361.55537745,  2457.82509304,  5787.51288932, 4581.05657485,   253.13770241,  -302.52250405,  4551.05588833, 8210.58374253, 10371.92384808, 14083.80977611,  4446.30866026, 1090.24972779,  -784.15232517, -7857.57817491,  6538.61069285, 3628.32009093,  4347.1917959 ,  9538.24180844, -1028.62419943, 2589.95753742,  -122.2483754 ,  -127.29726391, -1018.12007687]
+
+## 4. Results
+Observations and additional results obtained after training the models described in the previous section are shown below. Just did standardization in features could made a little improvement.
+![alt text](result.png "Fig. 5. Scatter plot")
+
+| Model | R^2 | RSME | Kaggle Score |
+|-------|--------------|--------------|-------------|
+| Numeric values only | 0.845 | 31671.964 | 0.452 |
+| Numeric values only - standarscaler | 0.846 | 31556.481 | 0.254 |
+
+## 5. Conclusion
+Standardization could make good interpretation and good improvement. For the next submission, we should use all data.
