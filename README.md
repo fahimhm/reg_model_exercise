@@ -11,8 +11,9 @@ In the next move, I would like to implement some assumptions on regression model
 - Residuals (aka prediction errors) are normally distributed
 - No heteroscedacity
 - Absence of multicollinearity abd auto-correlation
+
 The linear regression model can be represented by the equation below.
-h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x
+> h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> + &theta;<sub>1</sub>x<sub>1</sub> + &theta;<sub>2</sub>x<sub>2</sub> + ... + + &theta;<sub>n</sub>x<sub>n</sub>
 
 ## 2. The Data: House Prices
 I got the data from the Kaggle Competition. The goal from this competition is to predict sales price for each house. Ask a home buyer to describe their dream house, and they probably won't begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition's dataset proves that much more influences price negotiations than the number of bedrooms or a white-picket fence. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa.
