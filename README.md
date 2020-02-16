@@ -21,14 +21,14 @@ Dataset has been splitted into train and test. Not like train-dataset, test-data
 
 ### 2.1. Data Processing
 The data downloaded, as mentioned above, was cleaned up and processed before using it for model fitting. There was missing value in the data that we need to handle. The data with more than 90% missing value were utterly removed. For data with less than 50%, the missing value was imputed by their median (numeric) or mode (categoric). There was a particular case for correlation in missing value, which means the data was null because data in another column was null. The data after this initial cleanup is shown in Fig 2.
-![alt text](miss_before.png "Fig. 1. Missing values matrix for all features")
+![alt text](image/miss_before.png "Fig. 1. Missing values matrix for all features")
 
-![alt text](miss_after.png "Fig. 2. Missing values matrix after initial cleanup")
+![alt text](image/miss_after.png "Fig. 2. Missing values matrix after initial cleanup")
 
 After initial cleanup, next step was to check variation in categorical data. I used a simple matrix by compared number of each value and their average. The higher result means that column almost contains one value and not fairly distributed. So it can be completely removed when the result more than 70.
-![alt text](variations.png "Fig. 3. Categorical variations matrix")
+![alt text](image/variations.png "Fig. 3. Categorical variations matrix")
 
-![alt text](miss_total_cleanup.png "Fig. 4. Missing value matrix after total cleanup")
+![alt text](image/miss_total_cleanup.png "Fig. 4. Missing value matrix after total cleanup")
 
 ### 2.2. Feature Selection and Engineering
 First step of feature engineering would be based on regression's assumptions. I would like to compare each assumption.
@@ -62,7 +62,7 @@ Coefficient:
 
 ## 4. Results
 Observations and additional results obtained after training the models described in the previous section are shown below. Just did standardization in features could made a little improvement.
-![alt text](result.png "Fig. 5. Scatter plot")
+![alt text](image/result.png "Fig. 5. Scatter plot")
 
 | Model | R^2 | RSME | Kaggle Score |
 |-------|--------------|--------------|-------------|
